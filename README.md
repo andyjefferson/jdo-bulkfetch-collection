@@ -14,6 +14,9 @@ To run this, simply type "mvn clean test".
 The test creates some data, and then does a single JDOQL query fetch, with the Collection field in the DFG. This results in SQL of
 
 ```
+SELECT 'mydomain.model.A' AS DN_TYPE,A0.ID,A0."NAME" FROM A A0
+
+
 SELECT 'mydomain.model.B' AS DN_TYPE,A1.ID,A1."NAME",A0.ID_OID,A0.IDX AS NUCORDER0 
 FROM A_BS A0 INNER JOIN B A1 ON A0.ID_EID = A1.ID 
 WHERE A0.IDX >= 0 AND EXISTS 
@@ -22,4 +25,4 @@ WHERE A0.IDX >= 0 AND EXISTS
      WHERE A0.ID_OID = A0_SUB.ID) ORDER BY NUCORDER0
 ```
 
-So a single SQL
+So one SQL for the query candidate and a single SQL for the collection field (for all candidates)
